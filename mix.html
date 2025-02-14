@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice html page</title>
+</head>
+<body>
+    <h1>Voice adding</h1>
+
+    <form id="userForm">
+        <label for="name">Username:</label>
+        <input type="text" id="name" name="name" placeholder="User name"><br><br>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="mail"><br></br> 
+
+        
+
+        <button type="button" onclick="startRecognition()">Start Speaking</button>
+    </form>
+
+    <h2>Instructions</h2>
+    <p>To fill in the form, speak the details one by one. For example: "My name is Jimit ", "My password is thiss", etc.</p>
+
+    <script>
+        // Initialize speech recognition
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US'; // Set language to English
+        recognition.continuous = false; // Stop after recognizing a single phrase
+        recognition.interimResults = false; // Don't show interim results
+
+        function startRecognition() {
+            recognition.start(); // Start listening
+            console.log("Listening... Speak now.");
+        }
+
+        // Function of the speech
+        recognition.onresult = function(event) {
+            const transcript = event.results[0][0].transcript.toLowerCase();
+            console.log("Recognized Speech:", transcript);
+
+            // Logic to match the recognized speech and autofill form fields
+            if (transcript.includes("my name is")) {
+                const name = transcript.replace("my name is", "").trim();
+                document.getElementById("name").value = name;
+            } else if (transcript.includes("my email is")) {
+                const email = transcript.replace("my email is", "").trim();
+                document.getElementById("email").value = email;
+            } else if (transcript.includes("my address is")) {
+                const address = transcript.replace("my address is", "").trim();
+                document.getElementById("address").value = address;
+            }
+        };
+
+        // Handle errors during recognition
+        recognition.onerror = function(event) {
+            console.error("Error occurred in speech recognition:", event.error);
+            alert("Sorry, I couldn't understand that. Please try again.");
+        };
+    </script>
+</body>
+</html>
