@@ -103,6 +103,11 @@
         }
         else if ( computerMove === 'scissors') {
             result = 'tie.';
+
+
+            localStorage.setItem('message', 'hello');
+
+
         }alert(`You picked rock. compuetr picked $
             {computerMove}. ${result}`);
     
@@ -110,6 +115,8 @@
     
     "> Scissors</button>
     <script>
+
+        console.log(localStorage.getItem('message'));
        
     </script>
 
