@@ -3,6 +3,14 @@
 <head>
     
     <title>DOM projects</title>
+<style>
+  .subscribe-button{
+    border: none;
+    background-color: black;
+  }
+</style>
+
+
 </head>
 <body>
 <p> Youtube Subscribe Button </p>
@@ -12,7 +20,7 @@ subscribe();
 
  
 
-" class="js-subscribe-button">Subscribe</button>
+" class="js-subscribe-button subscribe-button">Subscribe</button>
 
 <p>Amazon Shipping calculate </p>
 <input placeholder="Cost of order"
